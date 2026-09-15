@@ -1,0 +1,10 @@
+
+# Private contact submissions
+/data/
+
+# Local dependencies and generated build output
+node_modules/
+.next/
+.next-*/
+*.log
+

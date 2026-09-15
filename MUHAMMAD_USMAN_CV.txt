@@ -1,0 +1,66 @@
+MUHAMMAD USMAN
+Agentic AI and Automation Developer
+
++92 317 010 6423
+usmangulzar005@gmail.com
+LinkedIn: https://linkedin.com/in/usmangulzar005
+GitHub: https://github.com/MuhammadUsmanGulzar
+Portfolio: https://usmangulzar-portfolio.lovable.app
+Location: KARACHI, PAKISTAN
+
+PROFESSIONAL PROFILE
+Agentic AI and Automation Developer with hands-on experience designing and shipping production-grade intelligent systems across logistics, healthcare, real estate, and aviation. Specializes in autonomous multi-agent architectures, RAG pipelines, LLM orchestration, MCP server development, and workflow automation that operate with minimal human intervention. Two years of deep n8n expertise including one year of client-facing freelance delivery, combined with six months of intensive LangGraph and CrewAI training — building agents that plan, reason, call tools, and self-correct to deliver measurable operational impact.
+
+EXPERIENCE
+
+Agentic AI and Automation Developer — Freelance — Client-Facing Delivery (2025 — PRESENT)
+  - Design and deliver autonomous multi-agent systems that plan, use tools, and self-correct — going far beyond simple chatbots into fully agentic workflows.
+  - Build production RAG systems, LLM-orchestrated pipelines, MCP servers, voice bots, and intelligent dashboards for clients in logistics, aviation, real estate, and dental healthcare.
+  - Saved over 1,200 hours of manual work across client workflows through targeted agentic process automation.
+  - Manage end-to-end project delivery covering architecture design, tool-calling setup, deployment, monitoring, and client handoff.
+
+SELECTED PROJECTS
+
+Autonomous Real Estate Agent [n8n, OpenAI, Vapi, Pinecone, WhatsApp API, LangChain]
+  - Architected a fully autonomous multi-channel AI agent that handles inbound property inquiries via voice and WhatsApp, qualifying leads, searching listings, and scheduling viewings without any human involvement.
+  - Integrated Pinecone for semantic property matching and Google Sheets for real-time CRM synchronisation, substantially reducing manual agent workload.
+  - Agent loop: inbound trigger, intent classification, tool call for property search or calendar, response generation, and logging — all without human intervention.
+
+RAG AI Assistant [Ollama, FastAPI, FAISS, LangChain, RAG]
+  - Built a secure, locally-hosted knowledge agent using RAG, enabling organisations to query private document repositories without sending any data to external APIs.
+  - Implemented FAISS-based vector search with semantic chunking for sub-second retrieval across large document corpora; the agent reformulates queries automatically on low-confidence results.
+
+Aviation Email Automation & Data Extraction Agent [Python, NLP, n8n, OpenAI]
+  - Engineered an end-to-end agentic pipeline to ingest high-volume aviation client emails, classify inquiry type, extract structured fields, and route each case to the correct team with zero manual triage.
+  - Agent detects ambiguous messages and autonomously requests clarification before logging, reducing downstream processing errors.
+
+AI Dental Clinic Assistant [n8n, WhatsApp API, Google Sheets, Google Calendar, OpenAI]
+  - Built a WhatsApp-based autonomous assistant that retrieves patient history, answers clinic queries, checks calendar availability, and books appointments end-to-end without staff involvement.
+  - Agent handles edge cases including double-booking and out-of-hours requests with graceful fallback to human escalation.
+
+Car Wash Voice Bot Agent [Vapi, n8n, OpenAI]
+  - Built a voice AI agent that handles both inbound and outbound calls, explains service packages, qualifies leads, books appointments, and logs all interaction data to the CRM autonomously.
+
+LinkedIn AI Auto-Poster [n8n, Google Gemini, OpenAI DALL-E]
+  - Automated a full content pipeline covering topic research, post drafting via Gemini, image generation via DALL-E, and scheduled publishing — a fully agentic content workflow with near-zero human input.
+
+Techmen Sales Automation Agent [n8n, OpenAI, Telegram, Google Sheets]
+  - Built a fully autonomous AI sales agent for a used laptop and tech accessories business, handling intent classification across six inquiry types including B2B corporate orders, complaint handling, and general support.
+  - Engineered a multi-engine system covering inventory search with smart alternative recommendations, a corporate lead capture engine, and a structured lead scoring pipeline that classifies prospects as Cold, Warm, Hot, or Priority and auto-assigns high-value leads to sales staff.
+  - Integrated human handover logic, automated three-stage follow-up scheduling, and CRM capture via Google Sheets, reducing manual sales workload while increasing lead conversion coverage.
+
+Flyinvict Logistics Dashboard [Next.js, React, Tailwind CSS]
+  - Delivered a data-driven enterprise dashboard for charter and fuel logistics featuring real-time revenue tracking, interactive charts, and a complete client management interface.
+
+Broad Peak Adventures [React, Tailwind CSS, Vercel]
+  - Designed and built a visually immersive tourism website for Northern Pakistan adventure travel, featuring mountainous SVG section dividers, a scroll-driven layout, and destination-focused content architecture.
+  - Built with React and Tailwind CSS using a Lovable-optimized prompt-driven development workflow and deployed on Vercel.
+
+PI-MF Autoencoder (Final Year Project) [PyTorch, YOLOv8, ByteTrack, ST-GCN, OpenCV]
+  - Designed a Physics-Informed Multi-Modal Fusion Autoencoder for crowd-robust anomaly detection on live CCTV footage, directly addressing occlusion challenges in dense urban scenes.
+  - Achieved 30+ FPS edge inference on an RTX 3060 after training across 150 GB of data spanning ShanghaiTech, UBnormal, and NTU RGB+D 120 datasets.
+  - Fused skeletal pose, optical flow, and appearance modalities under physics-informed constraints to suppress false positives in highly crowded environments.
+
+EDUCATION
+Bachelor of Science in Artificial Intelligence, IQRA University, Karachi (2022 — 2026)
+Final Year Project: PI-MF Autoencoder — a Physics-Informed Multi-Modal Fusion Autoencoder for crowd-robust CCTV anomaly detection, fusing skeletal pose, optical flow, and appearance modalities under physics-informed constraints; achieved 30+ FPS edge inference on RTX 3060 across 150 GB of data (ShanghaiTech, UBnormal, NTU RGB+D 120).
