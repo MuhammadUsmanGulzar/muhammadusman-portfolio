@@ -20,7 +20,7 @@ const skills = [
 ];
 const projects = [
   {icon:'house', title:'Real estate assistant', description:'Handles property enquiries, finds listings, and books viewings through voice and WhatsApp.', tools:['n8n','OpenAI','Vapi'], id:'real-estate-agent'},
-  {icon:'document', title:'Private document assistant', description:'Searches internal documents and answers questions using locally hosted AI.', tools:['Ollama','FAISS','FastAPI'], id:'rag-assistant'},
+  {icon:'automation', title:'PostPilot autoposting system', description:'Agentic content studio that researches, writes, creates images, tracks history, and prepares posts for publishing.', tools:['Next.js','Supabase','n8n'], id:'postpilot-autoposting'},
   {icon:'chart', title:'Jepsii fuel operations dashboard', description:'Built for Jepsii to manage fuel inquiries, jobs, invoices, ledgers, vendor and client balances, and financial reporting.', tools:['Next.js','React','REST APIs'], id:'logistics-dashboard'},
 ];
 export default function Home() {
