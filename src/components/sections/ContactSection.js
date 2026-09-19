@@ -57,8 +57,8 @@ export default function ContactSection() {
       <section className="bento-box col-span-5" aria-labelledby="contact-details-title">
         <h3 id="contact-details-title">Contact details</h3>
         <div className="contact-links" style={{marginTop:24}}>
-          <div><p>Email</p><a href={`mailto:${contactEmail}`}>{contactEmail} ↗</a></div>
-          <div><p>Phone</p><a href="tel:+923170106423">+92 317 010 6423</a></div>
+          <div><p>Email</p><a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}`} target="_blank" rel="noreferrer">{contactEmail} ↗</a></div>
+          <div><p>Phone</p><a href="https://wa.me/923170106423" target="_blank" rel="noreferrer">+92 317 010 6423</a></div>
           <div><p>Elsewhere</p><a href="https://linkedin.com/in/usmangulzar005" target="_blank" rel="noreferrer">LinkedIn ↗</a><br/><a href="https://github.com/MuhammadUsmanGulzar" target="_blank" rel="noreferrer">GitHub ↗</a></div>
           <p className="muted">Based in Karachi, Pakistan.</p>
         </div>
