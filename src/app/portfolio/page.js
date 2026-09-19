@@ -135,27 +135,33 @@ const projects = [
   {
     id: "postpilot-autoposting",
     icon: "PP",
-    title: "PostPilot Agentic Autoposting System",
-    type: "agentic content automation",
-    headline: "A digital media marketing system that turns an idea into a ready-to-publish post.",
+    title: "PostPilot Agentic Social Media Marketing System",
+    type: "agentic marketing automation",
+    headline: "An AI marketing workspace that works like a lightweight social media agency.",
     description:
-      "An agentic content studio for researching, writing, designing, tracking, and preparing social posts for publishing.",
+      "PostPilot generates platform-ready posts and images, shows the final output, and lets the user choose where to publish.",
     details: [
-      "I am building PostPilot as an agentic autoposting and digital media marketing system for content teams and founders.",
-      "The dashboard connects to an n8n production webhook, sends a clear content brief, and tracks every generation from request to completed output.",
-      "The system can research a topic, write the post, create a supporting image, store generation history in Supabase, and show success rate, average generation time, total generations, and images created.",
-      "It includes a media library for generated images, an output preview with the finished LinkedIn post, audience and format details, and publishing controls for LinkedIn, Instagram, Facebook, X/Twitter, and TikTok.",
+      "I am building PostPilot as an agentic social media marketing system for creators, founders, and small teams.",
+      "The current version takes a topic, target audience, tone, visual preference, and key angle, then sends the brief to an n8n production workflow.",
+      "The agent workflow researches the idea, writes the post, creates a supporting image, stores generation history in Supabase, and shows the finished output before anything is posted.",
+      "The user stays in control: PostPilot prepares the content for LinkedIn, Instagram, Facebook, X/Twitter, or TikTok, then the user chooses the platform and publishes it there.",
     ],
     role: "Full-stack automation and agent workflow development",
-    domain: "Digital media marketing",
-    outcome: "A controlled content workflow that produces publish-ready posts with traceable history and reusable media assets.",
-    stack: ["Next.js", "React", "Supabase", "n8n", "OpenAI", "Image generation", "Social APIs"],
+    domain: "Agentic social media marketing",
+    outcome: "A controlled marketing workflow that produces ready-to-post content with history, media assets, and clear review before publishing.",
+    stack: ["Next.js", "React", "Supabase", "n8n", "OpenAI", "Image generation"],
     flow: [
       "User enters topic and audience",
-      "n8n agent workflow researches and writes",
-      "Image and post output are generated",
+      "Agent workflow researches and writes",
+      "Post and image are generated",
       "History and media are saved in Supabase",
-      "User previews and publishes",
+      "User reviews and posts on the chosen platform",
+    ],
+    roadmap: [
+      "Generate short videos from the same campaign brief.",
+      "Run paid ads and track campaign spend.",
+      "Reply to customer comments and messages with approval controls.",
+      "Show analytics for each post, including budget used, progress gained, and return on every rupee or dollar spent.",
     ],
   },
   {
@@ -346,6 +352,17 @@ export default function Portfolio() {
                 <h3>Workflow</h3>
                 <ol>
                   {selectedProject.flow.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+
+            {selectedProject.roadmap?.length > 0 && (
+              <div className="project-modal-section">
+                <h3>Future work</h3>
+                <ol>
+                  {selectedProject.roadmap.map((step) => (
                     <li key={step}>{step}</li>
                   ))}
                 </ol>
