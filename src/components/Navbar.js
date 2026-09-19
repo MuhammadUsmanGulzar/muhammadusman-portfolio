@@ -13,7 +13,6 @@ export default function Navbar() {
         <Link href="/portfolio" className={pathname === '/portfolio' ? 'active' : ''}>Work</Link>
         <Link href="/resume" className={pathname === '/resume' ? 'active' : ''}>Experience</Link>
         <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
-        <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
       </nav>
     </header>
   );

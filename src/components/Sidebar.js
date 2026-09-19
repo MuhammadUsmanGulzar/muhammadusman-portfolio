@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 
-const links = [['Work', 'work'], ['Experience', 'experience'], ['About', 'about'], ['Contact', 'contact']];
+const links = [['Work', 'work'], ['Experience', 'experience'], ['About', 'about']];
 
 export default function Sidebar() {
   const pathname = usePathname();
