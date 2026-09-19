@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint src --max-warnings=0",
+    "test": "node .contact-check.mjs"
   },
   "dependencies": {
     "framer-motion": "^11.18.2",
@@ -18,5 +19,8 @@
   "devDependencies": {
     "eslint": "^8",
     "eslint-config-next": "15.5.24"
+  },
+  "overrides": {
+    "postcss": "8.5.23"
   }
 }

@@ -82,6 +82,7 @@ function ProjectDetail({ project, onClose, mobile, reduced, returnFocus }) {
         </section>
         <aside className={styles.stack}><p className={styles.eyebrow}>Built with</p><div>{project.stack?.map(tool => <span key={tool}>{tool}</span>)}</div>{project.outcome && <><p className={styles.eyebrow}>The outcome</p><p>{project.outcome}</p></>}</aside>
         {!!project.flow?.length && <section className={styles.architecture}><p className={styles.eyebrow}>How it works</p><ol>{project.flow.map((step, index) => <li key={step}><span>{String(index + 1).padStart(2, '0')}</span><strong>{step}</strong>{index < project.flow.length - 1 && <Icon name="arrow" />}</li>)}</ol></section>}
+        {/* eslint-disable-next-line @next/next/no-img-element -- Optional screenshots have no guaranteed intrinsic dimensions. */}
         {!!project.images?.length && <section className={styles.screenshots}>{project.images.map(img => <figure key={img.src}><img src={img.src} alt={img.alt || project.title} />{img.caption && <figcaption>{img.caption}</figcaption>}</figure>)}</section>}
       </div>
     </motion.article>

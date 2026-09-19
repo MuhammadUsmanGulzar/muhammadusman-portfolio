@@ -2,8 +2,8 @@ import './globals.css';
 import Sidebar from '../components/Sidebar';
 
 export const metadata = {
-  title: 'Muhammad Usman | Agentic AI & Automation Developer',
-  description: 'Portfolio of Muhammad Usman, Agentic AI and Automation Developer specializing in multi-agent architectures and LLM orchestration.',
+  title: 'Muhammad Usman | AI & Automation Engineer',
+  description: 'Muhammad Usman builds AI assistants, business automations, and web applications through direct client collaboration.',
 };
 
 export default function RootLayout({ children }) {
@@ -17,7 +17,6 @@ export default function RootLayout({ children }) {
               {children}
             </div>
           </main>
-          <footer className="site-footer"><span>© 2026 Muhammad Usman</span><span>AI, automation & web development.</span></footer>
         </div>
       </body>
     </html>

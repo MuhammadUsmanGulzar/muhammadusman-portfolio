@@ -8,3 +8,10 @@ node_modules/
 .next-*/
 *.log
 
+
+# Local credentials and hosting metadata
+.env*
+!.env.example
+*.pem
+*.key
+.vercel/
