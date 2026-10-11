@@ -1,0 +1,32 @@
+.showcase{margin:28px 0 0;color:#263445}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:18px}
+.eyebrow{margin:0 0 7px!important;text-transform:uppercase;font-size:10px!important;letter-spacing:.15em;color:#788595!important;font-weight:500}
+.heading h2{font-size:22px;letter-spacing:-.035em;font-weight:500;line-height:1.3;margin:0}
+.allWork{font-size:12px;color:#3d666e;white-space:nowrap;text-decoration:none}.allWork span{margin-left:12px}
+.gallery{border:1px solid #dce1e7;border-radius:12px;background:#fcfcfd;overflow:hidden}
+.projectNav{display:flex;gap:0;border-bottom:1px solid #e1e5ec;background:#fff;padding:0 25px}
+.projectNav button{position:relative;display:flex;align-items:center;gap:12px;flex:1;text-align:left;padding:20px 12px;border:0;border-bottom:2px solid transparent;background:transparent;color:#737f90;font:500 13px Arial,sans-serif;cursor:pointer;transition:background .2s,color .2s}
+.projectNav button:hover{background:#f5f6f9;color:#263445}.projectNav button[aria-pressed=true]{color:#263445;border-bottom-color:var(--system-accent)}
+.projectNumber{font-size:10px;font-weight:400;color:#9099a8}.projectKind{font-size:10px;font-weight:400;margin-left:auto;color:#8b94a1}
+.presentation{display:grid;grid-template-columns:minmax(235px,.8fr) minmax(0,2fr);min-height:455px;background:radial-gradient(ellipse at 74% 44%,#e7e8f2 0%,#f1f2f6 42%,#fcfcfd 74%)}
+.copy{padding:43px 12px 34px 34px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;position:relative;z-index:1}
+.projectMeta{font-size:10px;color:#6f7b8d;display:flex;gap:8px;align-items:center;margin-bottom:21px}.accentDot{width:6px;height:6px;border-radius:50%;background:var(--system-accent)}
+.copy h3{font-size:26px;font-weight:500;letter-spacing:-.045em;line-height:1.28;color:#233044;max-width:285px;margin:0 0 17px}
+.copy p{font-size:12px;color:#728093;line-height:1.85;margin:0;max-width:285px}
+.status{display:inline-block;margin-top:15px;padding:4px 8px;border:1px solid #dfe3ea;border-radius:4px;font-size:9px;color:#7d8899;background:#ffffff70}
+.projectLink{font-size:12px;color:#2f4b63;text-decoration:none;margin-top:28px;padding-bottom:7px;border-bottom:1px solid #b7c1ce}.projectLink span{margin-left:22px}
+.stack{font-size:9px;color:#8993a1;margin-top:20px;line-height:1.7}
+.viewport{position:relative;min-width:0;height:455px;overflow:hidden}
+.canvas{position:absolute;inset:0;display:block;width:100%;height:100%;cursor:grab;touch-action:pan-y;outline-offset:-8px}.canvas:active{cursor:grabbing}.canvas:focus-visible{outline:2px solid #8493ac;border-radius:8px}
+.stageLabel{position:absolute;top:24px;left:24px;right:26px;display:flex;justify-content:space-between;font-size:8px;letter-spacing:.13em;color:#9098a8;pointer-events:none;z-index:1}
+.sceneFooter{position:absolute;bottom:17px;left:24px;right:26px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:9px;color:#8490a0;pointer-events:none}.sceneFooter span span{margin-left:8px}.sceneFooter button{pointer-events:auto;border:0;border-bottom:1px solid #cdd2db;background:transparent;color:#67758a;padding:5px 0;font:inherit;cursor:pointer}
+.explore{display:grid;grid-template-columns:minmax(300px,1fr) 1.25fr;gap:28px;align-items:center;padding:22px 32px;border-top:1px solid #e4e7ed;background:#fff}
+.stageNav{display:flex;gap:7px}.stageNav button{display:flex;align-items:center;gap:10px;font:400 11px Arial,sans-serif;border:1px solid transparent;border-radius:6px;background:transparent;color:#8b94a2;padding:11px 13px;cursor:pointer;transition:color .2s,background .2s}.stageNav button span{font-size:9px;color:#a0a9b5}.stageNav button[aria-pressed=true]{border-color:#dce0e8;background:#f4f5f8;color:#2c3b50}.stageNav button:hover{color:#263445;background:#f7f8fa}
+.explore p{font-size:11px;line-height:1.8;color:#758095;margin:0;min-height:40px;max-width:510px}
+.caption{display:flex;justify-content:space-between;gap:20px;padding:12px 32px;border-top:1px solid #e8ebf0;background:#fafbfc;font-size:9px;color:#949dab;line-height:1.5}
+.fallback{position:absolute;inset:66px 28px 55px;background:#182232;color:#e6eaf2;padding:26px;border:1px solid #354359;border-radius:12px}.fallback>span{font-size:12px;color:var(--system-accent)}.fallback h4{font-size:20px;font-weight:500;margin:15px 0}.fallback ol{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-left:20px;font-size:12px}.fallback p{font-size:12px;color:#97b4af;margin-top:24px}
+.projectNav button:focus-visible,.stageNav button:focus-visible,.sceneFooter button:focus-visible,.projectLink:focus-visible,.allWork:focus-visible{outline:2px solid #627e9b;outline-offset:3px}
+@media(min-width:1450px){.viewport{height:510px}.copy{padding-left:45px}.copy h3{font-size:29px}.copy p{font-size:13px}}
+@media(max-width:1050px){.projectKind{display:none}.presentation{grid-template-columns:minmax(215px,.8fr) minmax(0,1.6fr)}.copy{padding-left:25px}.copy h3{font-size:23px}.viewport{height:425px}.explore{gap:15px;padding:20px}.stageNav{gap:0}.stageNav button{padding:10px}.caption{padding:12px 20px}}
+@media(max-width:760px){.showcase{margin-top:25px}.heading h2{font-size:20px}.projectNav{padding:0 9px}.projectNav button{padding:17px 9px;gap:8px;font-size:12px}.presentation{display:flex;flex-direction:column}.copy{padding:27px 24px 6px;display:grid;grid-template-columns:1fr auto;gap:0 14px}.projectMeta{grid-column:1/-1;margin-bottom:12px}.copy h3{grid-column:1/-1;max-width:100%;font-size:24px;margin-bottom:12px}.copy p{grid-column:1/-1;max-width:100%;font-size:12px}.status{align-self:center;justify-self:start;margin-top:14px}.projectLink{margin-top:14px;align-self:center}.stack{grid-column:1/-1;margin-top:14px}.viewport{height:340px}.stageLabel{top:15px;font-size:7px}.sceneFooter{bottom:11px}.explore{grid-template-columns:1fr;gap:13px;padding:19px 22px}.stageNav{justify-content:space-between;gap:5px}.stageNav button{flex:1;justify-content:center;padding:11px 8px}.explore p{min-height:60px;font-size:11px;max-width:none}.caption{font-size:8px;padding:11px 20px;gap:14px}.caption span:first-child{display:none}.caption span:last-child{margin:auto}.fallback{inset:45px 20px 40px;padding:22px}.fallback h4{font-size:18px}.fallback ol{font-size:11px;gap:16px}.allWork{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.projectNav button,.stageNav button{transition:none}}

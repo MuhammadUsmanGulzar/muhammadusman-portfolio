@@ -1,132 +1,44 @@
-const cardHeaderStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginBottom: '1.5rem',
-  flexWrap: 'wrap',
-  gap: '1rem',
-};
+import { ExperienceSnapshot } from '../ContextPanels';
+import PageMotion from '../PageMotion';
 
-const titleStyle = { fontSize: '1.5rem', fontWeight: '700' };
-const metaStyle = { color: 'var(--accent-1)', fontSize: '1rem', fontWeight: '500' };
-const dateStyle = {
-  padding: '0.4rem 1rem',
-  background: 'rgba(255,255,255,0.05)',
-  borderRadius: '50px',
-  fontSize: '0.9rem',
-  color: 'var(--text-muted)',
-};
-const listStyle = {
-  listStyleType: 'disc',
-  listStylePosition: 'outside',
-  marginLeft: '1.5rem',
-  color: 'var(--text-muted)',
-  lineHeight: '1.8',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
-};
-const strongStyle = { color: 'var(--text-main)' };
-
-function ResumeCard({ title, meta, date, children }) {
-  return (
-    <div className="bento-box col-span-12">
-      <div style={cardHeaderStyle}>
-        <div>
-          <h3 style={titleStyle}>{title}</h3>
-          <p style={metaStyle}>{meta}</p>
-        </div>
-        <div style={dateStyle}>{date}</div>
-      </div>
-      {children}
-    </div>
-  );
-}
+const roles = [
+  { company:'Azm Al Safwa', role:'Artificial Intelligence Engineer', meta:'Contract · Saudi Arabia · Remote', date:'Aug 2026 — present', tag:'Current role',
+    points:['Migrating the company website to Next.js to make it faster and easier to maintain.','Building an AI assistant that answers questions using company documents.','Preparing documents for search and connecting the results to AI-generated answers.','Automating data workflows and building a dashboard to track business metrics.'] },
+  { company:'Jepsii', role:'Full-Stack Dashboard Developer', meta:'Aviation fuel operations · Direct client collaboration', date:'2026 · Project',
+    points:['Worked directly with Jepsii on its aviation operations projects.','Built a dashboard for fuel enquiries, jobs, invoices, ledgers, banks, payments, fuel tickets, operators, vendors, clients, and fuel prices.','Created views for flight count, fuel uplifts, revenue, gross margin, receivables, payables, invoice activity, and client/vendor balances.','Added filters, PDF export, and charts for revenue, margin, flight activity, and fuel pricing.','Built aviation email automation to classify enquiries, extract details, check missing information, and route cases.'], link:'#logistics-dashboard', linkText:'Explore the Jepsii project' },
+  { company:'Freelance', role:'Agentic AI & Automation Developer', meta:'Client-facing design and delivery', date:'2025 — present',
+    points:['Build AI assistants that use tools and complete multi-step tasks.','Create document search tools, MCP servers, voice assistants, and dashboards across logistics, aviation, real estate, and healthcare.','Worked directly with clients on Techmen, Jepsii, an AI dental clinic assistant, a real estate agent, PostPilot, and a car wash voice agent.','Handle project design, development, deployment, monitoring, and client handoff.'], link:'#work', linkText:'Explore client work' },
+];
+const certificates = [
+  { issuer:'n8n Education', name:'n8n Program Completion', subtitle:'Professional Certificate', date:'August 2026', id:'aaab880fa7c94726a9546e1fdae8cef7', mark:'n8n' },
+  { issuer:'Google · Coursera', name:'Google AI Essentials', subtitle:'Authorized by Google', date:'September 8, 2025', id:'9SR2M380KPW0', mark:'G' },
+  { issuer:'Google · Coursera', name:'Foundations: Data, Data, Everywhere', subtitle:'Authorized by Google', date:'September 13, 2025', id:'08E2SL44YMWW', mark:'G' },
+];
 
 export default function ExperienceSection() {
-  return (
-    <div className="container">
-      <section className="page-header">
-        <h2 className="page-title">Experience & <span>Certifications</span></h2>
-        <p className="page-desc">
-          Client-facing AI development, project experience, certifications, and education.
-        </p>
-      </section>
-
-      <div className="bento-grid">
-        <ResumeCard
-          title="Artificial Intelligence Engineer"
-          meta="Azm Al Safwa (Contract) - Saudi Arabia (Remote)"
-          date="AUG 2026 - PRESENT"
-        >
-          <ul style={listStyle}>
-            <li>Migrating the company website to Next.js to make it faster and easier to maintain.</li>
-            <li>Building an AI assistant that answers questions using company documents.</li>
-            <li>Preparing documents for search and connecting the results to AI-generated answers.</li>
-            <li>Automating data workflows and building a dashboard to track business metrics.</li>
-          </ul>
-        </ResumeCard>
-
-        <ResumeCard
-          title="Full-Stack Dashboard Developer"
-          meta="Jepsii - Aviation Fuel Operations"
-          date="2026 - PROJECT"
-        >
-          <ul style={listStyle}>
-            <li>Worked directly with Jepsii on its aviation operations projects.</li>
-            <li>Built an admin dashboard for aviation fuel operations, covering fuel inquiries, jobs, invoices, ledgers, banks, payments, fuel tickets, operators, vendors, clients, and fuel prices.</li>
-            <li>Created operating views for flight count, fuel uplifts, generated revenue, gross margin, accounts receivable, accounts payable, invoice activity, and vendor/client balances.</li>
-            <li>Added filters, PDF export, and analytics charts for revenue flow, margin profit, operational velocity, and fuel pricing trends.</li>
-            <li>Built Jepsii aviation email automation to classify enquiries, extract key details, check missing information, and route cases to the right team.</li>
-          </ul>
-        </ResumeCard>
-
-        <ResumeCard
-          title="Agentic AI and Automation Developer"
-          meta="Freelance - Client-Facing Delivery"
-          date="2025 - PRESENT"
-        >
-          <ul style={listStyle}>
-            <li>Build AI assistants that use tools and complete multi-step tasks.</li>
-            <li>Create document search tools, MCP servers, voice assistants, and dashboards for clients in logistics, aviation, real estate, and healthcare.</li>
-            <li>Worked directly with clients on Techmen sales automation, Jepsii, an AI dental clinic assistant, a real estate agent, PostPilot, and a car wash voice agent.</li>
-            <li>Handle project design, development, deployment, monitoring, and client handoff.</li>
-          </ul>
-        </ResumeCard>
-
-        <ResumeCard
-          title="Certifications"
-          meta="Google, Coursera, and n8n"
-          date="2025 - 2026"
-        >
-          <ul style={listStyle}>
-            <li><strong style={strongStyle}>n8n Program Completion - Professional Certificate:</strong> issued by n8n Education in August 2026. Credential ID: aaab880fa7c94726a9546e1fdae8cef7.</li>
-            <li><strong style={strongStyle}>Google AI Essentials:</strong> authorized by Google and offered through Coursera. Completed Sep 8, 2025. Verification ID: 9SR2M380KPW0.</li>
-            <li><strong style={strongStyle}>Foundations: Data, Data, Everywhere:</strong> authorized by Google and offered through Coursera. Completed Sep 13, 2025. Verification ID: 08E2SL44YMWW.</li>
-          </ul>
-        </ResumeCard>
-
-        <ResumeCard
-          title="Training & Specializations"
-          meta="AI Agents & Workflow Automation"
-          date="2023 - 2025"
-        >
-          <ul style={listStyle}>
-            <li><strong style={strongStyle}>Workflow Automation (2 Years):</strong> Building n8n workflows that connect APIs, databases, and AI models.</li>
-            <li><strong style={strongStyle}>Multi-Agent Orchestration (6 Months):</strong> Hands-on training in building AI agents with LangGraph and CrewAI.</li>
-          </ul>
-        </ResumeCard>
-
-        <ResumeCard
-          title="Bachelor of Science in Artificial Intelligence"
-          meta="IQRA University, Karachi"
-          date="2022 - 2026"
-        >
-          <p style={{ color: 'var(--text-muted)', lineHeight: '1.8' }}>
-            <strong style={strongStyle}>Final Year Project:</strong> PI-MF Autoencoder: a computer vision model that detects unusual activity in crowded CCTV footage using body pose, movement, and appearance. Achieved 30+ FPS on an RTX 3060 using a 150 GB dataset.
-          </p>
-        </ResumeCard>
+  return <PageMotion className="container editorial-page experience-page">
+    <header className="editorial-intro">
+      <div className="editorial-intro-copy" data-depth-reveal>
+        <p className="editorial-kicker">02 / Experience</p><h2 className="editorial-title">Built with clients.<br/>Backed by practice.</h2>
+        <p className="editorial-lede">AI development, full-stack delivery, and workflow automation — from the first conversation to the working system.</p>
+        <nav className="editorial-jumps" aria-label="Experience sections"><a href="#career-path">Experience ↗</a><a href="#certifications">Certifications ↗</a><a href="#education">Education ↗</a></nav>
       </div>
-    </div>
-  );
+      <ExperienceSnapshot/>
+    </header>
+    <section className="career-section" id="career-path" aria-labelledby="career-title">
+      <div className="editorial-section-heading"><h3 id="career-title">Experience</h3><span>Client-facing engineering</span></div>
+      <div className="career-timeline">{roles.map((item,index)=><article className="career-entry" key={item.company} data-depth-reveal>
+        <div className="career-date"><span className="career-number">0{index+1}</span><p>{item.date}</p>{item.tag&&<span className="editorial-tag">{item.tag}</span>}</div>
+        <div className="career-card"><p className="career-company">{item.company}</p><h4>{item.role}</h4><p className="career-meta">{item.meta}</p><ul>{item.points.map(point=><li key={point}>{point}</li>)}</ul>{item.link&&<a className="editorial-link" href={item.link}>{item.linkText} <span aria-hidden="true">↗</span></a>}</div>
+      </article>)}</div>
+    </section>
+    <section className="credential-section" id="certifications" aria-labelledby="credential-title">
+      <div className="editorial-section-heading"><h3 id="credential-title">Certifications</h3><span>03 credentials</span></div>
+      <div className="credential-grid">{certificates.map(cert=><article className="credential-card" key={cert.id} data-depth-reveal><div className="credential-top"><span className="credential-mark">{cert.mark}</span><span>{cert.issuer}</span></div><h4>{cert.name}</h4><p>{cert.subtitle}</p><time>{cert.date}</time><details><summary>Credential details</summary><p>Credential ID: <span className="credential-id">{cert.id}</span></p></details></article>)}</div>
+    </section>
+    <section id="education" className="education-grid" aria-label="Education and training">
+      <article className="editorial-card" data-depth-reveal><p className="editorial-kicker">Education / 2022–2026</p><h3>B.S. Artificial Intelligence</h3><p className="education-school">IQRA University, Karachi</p><p><strong>Final year project:</strong> PI-MF Autoencoder, a computer vision model for unusual activity in crowded CCTV footage using body pose, movement, and appearance. Achieved 30+ FPS on an RTX 3060 using a 150 GB dataset.</p><a className="editorial-link" href="#autoencoder">View the research project ↗</a></article>
+      <article className="editorial-card" data-depth-reveal><p className="editorial-kicker">Training / 2023–2025</p><h3>Applied learning</h3><dl className="training-list"><div><dt>Workflow automation · 2 years</dt><dd>Building n8n workflows that connect APIs, databases, and AI models.</dd></div><div><dt>Multi-agent orchestration · 6 months</dt><dd>Hands-on training with LangGraph and CrewAI.</dd></div></dl></article>
+    </section>
+  </PageMotion>;
 }

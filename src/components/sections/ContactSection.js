@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { ContactGuide } from '../ContextPanels';
+import PageMotion from '../PageMotion';
 
 const contactEmail = 'usmangulzar005@gmail.com';
 
@@ -40,10 +42,10 @@ export default function ContactSection() {
       setSubmitting(false);
     }
   }
-  return <div className="container">
-    <section className="page-header"><h2 className="page-title">Get in touch</h2><p className="page-desc">Have a project in mind or a work opportunity? Tell me a little about it.</p></section>
-    <div className="bento-grid">
-      <section className="bento-box col-span-7" aria-labelledby="form-title">
+  return <PageMotion className="container editorial-page contact-page">
+    <header className="contact-page-heading" data-depth-reveal><p className="editorial-kicker">04 / Contact</p><h2 className="editorial-title">Let’s build something useful.</h2><p className="editorial-lede">Have a project in mind or a work opportunity? Tell me a little about it.</p></header>
+    <div className="contact-layout">
+      <section className="contact-form-panel editorial-card" aria-labelledby="form-title" data-depth-reveal>
         <h3 id="form-title">Tell me about your project</h3>
         <p className="contact-form-intro" id="form-help">Share a few details about your project or enquiry.</p>
         <form className="contact-form" onSubmit={handleSubmit} aria-describedby="form-help" aria-busy={submitting}>
@@ -54,16 +56,16 @@ export default function ContactSection() {
           <p className="contact-form-status" role="status" aria-live="polite">{status}</p>
         </form>
       </section>
-      <section className="bento-box col-span-5" aria-labelledby="contact-details-title">
+      <aside className="contact-aside"><ContactGuide/><section className="contact-details-panel" aria-labelledby="contact-details-title" data-depth-reveal>
         <h3 id="contact-details-title">Contact details</h3>
-        <div className="contact-links" style={{marginTop:24}}>
+        <div className="contact-links">
           <div><p>Email</p><a href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(contactEmail)}`} target="_blank" rel="noreferrer">{contactEmail} ↗</a></div>
           <div><p>Phone</p><a href="https://wa.me/923170106423" target="_blank" rel="noreferrer">+92 317 010 6423</a></div>
           <div><p>Elsewhere</p><a href="https://linkedin.com/in/usmangulzar005" target="_blank" rel="noreferrer">LinkedIn ↗</a><br/><a href="https://github.com/MuhammadUsmanGulzar" target="_blank" rel="noreferrer">GitHub ↗</a></div>
           <p className="muted">Based in Karachi, Pakistan.</p>
         </div>
-      </section>
+      </section></aside>
     </div>
-  </div>;
+  </PageMotion>;
 }
 

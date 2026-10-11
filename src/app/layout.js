@@ -1,4 +1,5 @@
 import './globals.css';
+import './editorial.css';
 import Sidebar from '../components/Sidebar';
 
 export const metadata = {
@@ -8,7 +9,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    // Extensions can add attributes to <html> before hydration. Keep suppression at this level only.
+    <html lang="en" suppressHydrationWarning>
       <body>
         <div className="app-container">
           <Sidebar />
@@ -22,4 +24,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

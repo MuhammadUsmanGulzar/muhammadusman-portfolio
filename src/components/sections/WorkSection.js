@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import PageStudy from "../PageStudy";
+import PageMotion from "../PageMotion";
+import ProjectDepthCard from "../ProjectDepthCard";
+import { projectColors } from "../project-card-artwork";
 
 const projects = [
   {
@@ -291,44 +295,28 @@ export default function WorkSection() {
   }, [selectedProject]);
 
   return (
-    <div className="container work-page">
-      <header className="work-header">
-        <div>
-          <h2>Work</h2>
-          <p>AI tools, automations, and web applications, including work built directly with clients.</p>
+    <PageMotion className="container editorial-page work-page">
+      <header className="editorial-intro">
+        <div className="editorial-intro-copy" data-depth-reveal>
+          <p className="editorial-kicker">01 / Work</p>
+          <h2 className="editorial-title">Systems built around<br/>real business needs.</h2>
+          <p className="editorial-lede">AI assistants, automations, and web applications. Work shaped through direct client conversations and hands-on delivery.</p>
+          <a className="editorial-link" href="#system-studio">Explore the interactive showcase <span aria-hidden="true">↗</span></a>
         </div>
-        <span className="work-count">{projects.length} projects</span>
+        <PageStudy theme="work"/>
       </header>
+      <div className="editorial-section-heading"><h3>Project collection</h3><span>{projects.length} projects</span></div>
 
       <div className="work-grid">
-        {projects.map((project) => (
-          <article className="work-card" id={project.id} key={project.id}>
-            <div className="work-card-labels">
-              <p>{project.domain}</p>
-              {project.status && <span className="work-status">{project.status}</span>}
-            </div>
-            <h3>{project.title}</h3>
-            <p className="work-card-description">{project.description}</p>
-            {project.client && <p className="work-client-note">Direct client collaboration</p>}
-            <p className="work-card-tools" aria-label="Tools used">{project.stack.join(" · ")}</p>
-            <button
-              className="project-detail-button"
-              type="button"
-              aria-haspopup="dialog"
-              aria-label={`Project details: ${project.title}`}
-              onClick={() => setSelectedProject(project)}
-            >
-              Project details <span aria-hidden="true">↗</span>
-            </button>
-          </article>
-        ))}
+        {projects.map((project,index)=><ProjectDepthCard key={project.id} project={project} index={index} total={projects.length} onOpen={setSelectedProject}/>)}
       </div>
 
       {selectedProject && (
         <dialog
           ref={dialogRef}
           aria-labelledby="project-modal-title"
-          className="project-modal"
+          className="project-modal project-detail-sheet"
+          style={{ "--detail-accent": projectColors[selectedProject.icon] || "#748d9c" }}
           onCancel={() => setSelectedProject(null)}
           onClose={() => setSelectedProject(null)}
           onClick={(event) => {
@@ -341,9 +329,12 @@ export default function WorkSection() {
           }}
         >
           <header className="project-modal-header">
-            <div>
-              <p className="project-modal-domain">{selectedProject.domain}</p>
-              <h2 id="project-modal-title">{selectedProject.title}</h2>
+            <div className="project-detail-identity">
+              <span className="project-detail-mark" aria-hidden="true">{selectedProject.icon}</span>
+              <div>
+                <p className="project-modal-domain">{selectedProject.domain}<span aria-hidden="true"> / </span>Project notes</p>
+                <h2 id="project-modal-title">{selectedProject.title}</h2>
+              </div>
             </div>
             <button
               aria-label="Close project details"
@@ -358,31 +349,38 @@ export default function WorkSection() {
           </header>
 
           <div className="project-modal-body" tabIndex={0} aria-label="Project explanation">
-            <p className="project-modal-headline">{selectedProject.headline}</p>
-            {selectedProject.status && <p className="project-modal-status">Currently in development</p>}
-            <section className="project-modal-section">
-              <h3>About the project</h3>
-              <div className="project-modal-copy">
-                {selectedProject.details.map((detail) => <p key={detail}>{detail}</p>)}
+            <div className="project-detail-summary">
+              <p className="project-detail-type">{selectedProject.type}</p>
+              <p className="project-modal-headline">{selectedProject.headline}</p>
+              <div className="project-detail-badges">
+                {selectedProject.client && <span><span aria-hidden="true">↗</span> Direct client collaboration</span>}
+                {selectedProject.status && <span className="project-modal-status"><i aria-hidden="true"/>In development</span>}
               </div>
-            </section>
+            </div>
 
-            <dl className="project-modal-meta">
-              {selectedProject.client && <div><dt>Client collaboration</dt><dd>I worked directly with the client on this project.</dd></div>}
-              <div><dt>My role</dt><dd>{selectedProject.role}</dd></div>
-              <div><dt>{selectedProject.status ? "Current focus" : "What it delivers"}</dt><dd>{selectedProject.outcome}</dd></div>
-            </dl>
+            <div className="project-detail-overview">
+              <section className="project-modal-section">
+                <h3><span className="project-detail-number" aria-hidden="true">01</span>About the project</h3>
+                <div className="project-modal-copy">
+                  {selectedProject.details.map((detail) => <p key={detail}>{detail}</p>)}
+                </div>
+              </section>
+              <dl className="project-modal-meta">
+                <div><dt>My role</dt><dd>{selectedProject.role}</dd></div>
+                <div><dt>{selectedProject.status ? "Current focus" : "What it delivers"}</dt><dd>{selectedProject.outcome}</dd></div>
+              </dl>
+            </div>
 
-            <section className="project-modal-section">
-              <h3>How it works</h3>
+            <section className="project-modal-section project-detail-flow">
+              <h3><span className="project-detail-number" aria-hidden="true">02</span>How it works</h3>
               <ol className="project-workflow">
-                {selectedProject.flow.map((step) => <li key={step}>{step}</li>)}
+                {selectedProject.flow.map((step) => <li key={step}><span>{step}</span></li>)}
               </ol>
             </section>
 
             {selectedProject.roadmap?.length > 0 && (
-              <section className="project-modal-section">
-                <h3>Planned next</h3>
+              <section className="project-modal-section project-detail-roadmap">
+                <h3><span className="project-detail-number" aria-hidden="true">03</span>Planned next<span className="project-detail-planned">Future work</span></h3>
                 <ul className="project-roadmap">
                   {selectedProject.roadmap.map((step) => <li key={step}>{step}</li>)}
                 </ul>
@@ -391,11 +389,11 @@ export default function WorkSection() {
 
             <section className="project-modal-section project-modal-stack">
               <h3>Built with</h3>
-              <p>{selectedProject.stack.join(" · ")}</p>
+              <ul className="project-detail-tools" aria-label="Project technologies">{selectedProject.stack.map(tool => <li key={tool}>{tool}</li>)}</ul>
             </section>
           </div>
         </dialog>
       )}
-    </div>
+    </PageMotion>
   );
 }
