@@ -3,8 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import PageStudy from "../PageStudy";
 import PageMotion from "../PageMotion";
-import ProjectDepthCard from "../ProjectDepthCard";
-import { projectColors } from "../project-card-artwork";
 
 const projects = [
   {
@@ -308,7 +306,17 @@ export default function WorkSection() {
       <div className="editorial-section-heading"><h3>Project collection</h3><span>{projects.length} projects</span></div>
 
       <div className="work-grid">
-        {projects.map((project,index)=><ProjectDepthCard key={project.id} project={project} index={index} total={projects.length} onOpen={setSelectedProject}/>)}
+        {projects.map((project, index) => (
+          <article className="work-card" id={project.id} key={project.id} data-depth-reveal>
+            <div className="work-card-topline"><span className="work-initial" aria-hidden="true">{project.icon}</span><span className="catalog-index">{String(index + 1).padStart(2, '0')} / {projects.length}</span></div>
+            <div className="work-card-labels"><p>{project.type}</p>{project.status && <span className="work-status">{project.status}</span>}</div>
+            <h3>{project.title}</h3>
+            <p className="work-card-description">{project.description}</p>
+            {project.client && <p className="work-client-note">Direct client collaboration</p>}
+            <p className="work-card-tools" aria-label="Tools used">{project.stack.join(' · ')}</p>
+            <button type="button" className="project-detail-button" aria-haspopup="dialog" aria-label={`Project details: ${project.title}`} onClick={() => setSelectedProject(project)}>Project details <span aria-hidden="true">↗</span></button>
+          </article>
+        ))}
       </div>
 
       {selectedProject && (
@@ -316,7 +324,7 @@ export default function WorkSection() {
           ref={dialogRef}
           aria-labelledby="project-modal-title"
           className="project-modal project-detail-sheet"
-          style={{ "--detail-accent": projectColors[selectedProject.icon] || "#748d9c" }}
+          style={{ "--detail-accent": "#748d9c" }}
           onCancel={() => setSelectedProject(null)}
           onClose={() => setSelectedProject(null)}
           onClick={(event) => {
