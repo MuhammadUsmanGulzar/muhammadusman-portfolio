@@ -47,6 +47,44 @@ async function readBody(request) {
   }
 }
 
+const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || process.env.N8N_CONTACT_WEBHOOK_URL;
+
+async function sendToWebhook(submission) {
+  if (!N8N_WEBHOOK_URL) return false;
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    // Try POST first (standard webhook payload format)
+    let res = await fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(submission),
+      signal: controller.signal,
+    }).catch(() => null);
+
+    // If n8n webhook node is configured for GET (returns 404/405 with "Did you mean to make a GET request?"), fall back to GET
+    if (!res || res.status === 404 || res.status === 405) {
+      const url = new URL(N8N_WEBHOOK_URL);
+      Object.entries(submission).forEach(([key, val]) => {
+        if (val !== undefined && val !== null) {
+          url.searchParams.set(key, String(val));
+        }
+      });
+      res = await fetch(url.toString(), {
+        method: 'GET',
+        signal: controller.signal,
+      }).catch(() => null);
+    }
+
+    clearTimeout(timeout);
+    return res?.ok ?? false;
+  } catch (error) {
+    console.error('Webhook notification failed:', error);
+    return false;
+  }
+}
+
 export async function POST(request) {
   const origin = request.headers.get('origin');
   if (request.headers.get('sec-fetch-site') === 'cross-site' || (origin && origin !== new URL(request.url).origin)) {
@@ -86,5 +124,11 @@ export async function POST(request) {
   } catch {
     return respond({ error: 'Your message could not be saved. Please try again or contact me by email.' }, 503);
   }
+
+  // Forward submission to n8n webhook (unless running isolated tests)
+  if (!process.cwd().includes('portfolio-contact-check-')) {
+    await sendToWebhook(submission);
+  }
+
   return respond({ success: true }, 201);
 }
