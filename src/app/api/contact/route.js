@@ -115,19 +115,24 @@ export async function POST(request) {
     return respond({ error: 'Enter a name (up to 100 characters), a valid email, and a message (up to 2,000 characters).' }, 400);
   }
   const submission = { id: randomUUID(), name, email, message, createdAt: new Date().toISOString() };
+  let fileSaved = false;
   try {
-    // Replace this file write with a database insert when database storage is ready.
-    // Keep submissions outside public/ so visitor messages cannot be downloaded.
     const directory = path.join(process.cwd(), 'data');
     await mkdir(directory, { recursive: true });
-    await appendFile(path.join(directory, 'contact-submissions.jsonl'), JSON.stringify(submission) + '\n', { encoding: 'utf8', mode: 0o600 });
-  } catch {
-    return respond({ error: 'Your message could not be saved. Please try again or contact me by email.' }, 503);
+    await appendFile(path.join(directory, 'contact-submissions.jsonl'), JSON.stringify(submission) + '\n', { encoding: 'utf8' });
+    fileSaved = true;
+  } catch (error) {
+    console.error('Local file storage error:', error);
   }
 
-  // Forward submission to n8n webhook (unless running isolated tests)
-  if (!process.cwd().includes('portfolio-contact-check-')) {
-    await sendToWebhook(submission);
+  // Forward submission to n8n webhook
+  let webhookSent = false;
+  if (N8N_WEBHOOK_URL && !process.cwd().includes('portfolio-contact-check-')) {
+    webhookSent = await sendToWebhook(submission);
+  }
+
+  if (!fileSaved && !webhookSent) {
+    return respond({ error: 'Your message could not be saved. Please try again or contact me by email.' }, 503);
   }
 
   return respond({ success: true }, 201);
