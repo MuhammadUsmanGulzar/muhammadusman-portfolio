@@ -1,5 +1,6 @@
 import { appendFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
+import { tmpdir } from 'node:os';
 import { randomUUID } from 'node:crypto';
 
 export const runtime = 'nodejs';
@@ -47,16 +48,14 @@ async function readBody(request) {
   }
 }
 
-const N8N_WEBHOOK_URL = process.env.N8N_WEBHOOK_URL || process.env.N8N_CONTACT_WEBHOOK_URL;
-
-async function sendToWebhook(submission) {
-  if (!N8N_WEBHOOK_URL) return false;
+async function sendToWebhook(submission, webhookUrl) {
+  if (!webhookUrl) return false;
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
 
     // Try POST first (standard webhook payload format)
-    let res = await fetch(N8N_WEBHOOK_URL, {
+    let res = await fetch(webhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(submission),
@@ -65,7 +64,7 @@ async function sendToWebhook(submission) {
 
     // If n8n webhook node is configured for GET (returns 404/405 with "Did you mean to make a GET request?"), fall back to GET
     if (!res || res.status === 404 || res.status === 405) {
-      const url = new URL(N8N_WEBHOOK_URL);
+      const url = new URL(webhookUrl);
       Object.entries(submission).forEach(([key, val]) => {
         if (val !== undefined && val !== null) {
           url.searchParams.set(key, String(val));
@@ -114,6 +113,8 @@ export async function POST(request) {
   if (!name || name.length > 100 || !email || email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message || message.length > 2000) {
     return respond({ error: 'Enter a name (up to 100 characters), a valid email, and a message (up to 2,000 characters).' }, 400);
   }
+
+  const webhookUrl = process.env.N8N_WEBHOOK_URL || process.env.N8N_CONTACT_WEBHOOK_URL;
   const submission = { id: randomUUID(), name, email, message, createdAt: new Date().toISOString() };
   let fileSaved = false;
   try {
@@ -122,13 +123,25 @@ export async function POST(request) {
     await appendFile(path.join(directory, 'contact-submissions.jsonl'), JSON.stringify(submission) + '\n', { encoding: 'utf8' });
     fileSaved = true;
   } catch (error) {
-    console.error('Local file storage error:', error);
+    if (process.env.VERCEL) {
+      try {
+        // Fallback for Vercel serverless where process.cwd() is read-only
+        const tmpDirectory = path.join(tmpdir(), 'portfolio-contact-data');
+        await mkdir(tmpDirectory, { recursive: true });
+        await appendFile(path.join(tmpDirectory, 'contact-submissions.jsonl'), JSON.stringify(submission) + '\n', { encoding: 'utf8' });
+        fileSaved = true;
+      } catch (tmpError) {
+        console.error('File storage error:', error?.message || error, tmpError?.message || tmpError);
+      }
+    }
   }
 
   // Forward submission to n8n webhook
   let webhookSent = false;
-  if (N8N_WEBHOOK_URL && !process.cwd().includes('portfolio-contact-check-')) {
-    webhookSent = await sendToWebhook(submission);
+  if (webhookUrl && !process.cwd().includes('portfolio-contact-check-')) {
+    webhookSent = await sendToWebhook(submission, webhookUrl);
+  } else if (!webhookUrl && !process.cwd().includes('portfolio-contact-check-')) {
+    console.warn('N8N_WEBHOOK_URL is not configured in environment variables.');
   }
 
   if (!fileSaved && !webhookSent) {
